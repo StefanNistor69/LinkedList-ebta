@@ -11,7 +11,20 @@ typedef struct node
 
 }*head;
 
+void push(struct node** head_ref, int new_data)
+{
 
+    struct node* new_node = (struct node*) malloc(sizeof(struct node));
+
+
+    new_node->data  = new_data;
+
+
+    new_node->next = (*head_ref);
+
+
+    (*head_ref)    = new_node;
+}
 void append(struct node** head_ref, int new_data)
 {
 
@@ -41,20 +54,7 @@ void append(struct node** head_ref, int new_data)
     return;
 }
 
-void push(struct node** head_ref, int new_data)
-{
 
-    struct node* new_node = (struct node*) malloc(sizeof(struct node));
-
-
-    new_node->data  = new_data;
-
-
-    new_node->next = (*head_ref);
-
-
-    (*head_ref)    = new_node;
-}
 void reverse(struct node** head_ref)
 {
     struct node* prev = NULL;
@@ -101,7 +101,7 @@ void insert(struct node** head){
     temp1->next = temp2->next;
     temp2->next = temp1;
 }
-void remove_value(struct node** head){
+void del(struct node** head){
 
     int pos;
     printf("position to remove: ");
@@ -172,20 +172,7 @@ int searchElement(struct node* head, int item)
     }
     return -1;
 }
-void print(struct node* head)
-{
-    if (head == NULL) {
-        printf("List has no elements \n");
-        return;
-    }
-    struct node* temp = head;
-    printf("\n Linked List : ");
-    while (temp != NULL) {
-        printf("  %d", temp->data);
-        temp = temp->next;
-    }
-    printf("\n");
-}
+
 void WriteLinkedList(struct node* root) {
     FILE* file = fopen("data.txt", "w");
     if (file == NULL) {
@@ -211,6 +198,20 @@ void ReadLinkedList(struct node** root) {
     }
     fclose(file);
 }
+void display(struct node* head)
+{
+    if (head == NULL) {
+        printf("List has no elements \n");
+        return;
+    }
+    struct node* temp = head;
+    printf("\n Linked List : ");
+    while (temp != NULL) {
+        printf("  %d", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
 int main(){
  struct node* head = NULL;
     int first_choice,second_choice, number_of_elements;
@@ -235,7 +236,7 @@ int main(){
                 scanf("%d", &data);
                 append(&head, data); }
         printf("List: ");
-        print(head);
+        display(head);
     break;
     case 2:
         printf("you can try something from here or exit bu typing 0");
@@ -257,39 +258,39 @@ int main(){
                 int data;
                 scanf("%d", &data);
                 append(&head, data);
-                print(head);
+                display(head);
                 break;
            }
            case 2: {
                 int data;
                 scanf("%d", &data);
                 push(&head, data);
-                print(head);
+                display(head);
                 break;
            }
 
            case 3: {
 
                 reverse(&head);
-                print(head);
+                display(head);
            break;
            }
            case 4: {
 
                 insert(&head);
-                print(head);
+                display(head);
            }break;
 
            case 5:{
 
-                remove_value(&head);
-                print(head);
+                del(&head);
+                display(head);
             }break;
 
            case 6:{
 
                 bubbleSort(head);
-                print(head);
+                display(head);
             }break;
 
             case 7:{
@@ -301,18 +302,18 @@ int main(){
                 else {
                 printf("No"); }
                 printf("\n");
-                print(head);
+                display(head);
                 break;
             }
 
             case 8: {
                 WriteLinkedList(head);
-                print(head);
+                display(head);
                  }break;
 
             case 9:{
                 ReadLinkedList(&head);
-                print(head);
+                display(head);
                 }break;
 
 
