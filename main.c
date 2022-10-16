@@ -43,16 +43,16 @@ void append(struct node** head_ref, int new_data)
 
 void push(struct node** head_ref, int new_data)
 {
-    /* 1. allocate node */
+
     struct node* new_node = (struct node*) malloc(sizeof(struct node));
 
-    /* 2. put in the data  */
+
     new_node->data  = new_data;
 
-    /* 3. Make next of new node as head */
+
     new_node->next = (*head_ref);
 
-    /* 4. move the head to point to the new node */
+
     (*head_ref)    = new_node;
 }
 void reverse(struct node** head_ref)
@@ -61,20 +61,20 @@ void reverse(struct node** head_ref)
     struct node* current = *head_ref;
     struct node* next = NULL;
     while (current != NULL) {
-        // Store next
+
         next = current->next;
 
-        // Reverse current node's pointer
+
         current->next = prev;
 
-        // Move pointers one position ahead.
+
         prev = current;
         current = next;
     }
     *head_ref = prev;
 }
 void insert(struct node** head){
-    //UI
+
     int pos, x;
     printf("New node position: \n");
     printf(" > ");
@@ -83,7 +83,7 @@ void insert(struct node** head){
     printf(" > ");
     scanf("%d", &x);
 
-    //Logic
+
     struct node* temp1 = (struct node*)malloc(sizeof(struct node));
     temp1->data = x;
     temp1->next = NULL;
@@ -102,25 +102,25 @@ void insert(struct node** head){
     temp2->next = temp1;
 }
 void remove_value(struct node** head){
-    //UI
+
     int pos;
     printf("position to remove: ");
     printf(" > ");
     scanf("%d", &pos);
 
-    //Logic
+
     struct node* temp1 = *head;
 
     if(pos==1){
-        *head = temp1->next; //head now points to seconde node
+        *head = temp1->next;
         free(temp1);
         return;
     }
     for (int i = 0; i < pos-2; i++)
         temp1 = temp1->next;
-    //temp1 points to (n-1)th Node
-    struct node* temp2 = temp1->next; //nth node
-    temp1->next =temp2->next; //(n+1)th node
+
+    struct node* temp2 = temp1->next;
+    temp1->next =temp2->next;
     free(temp2);
 }
 void swap(struct node *a, struct node *b)
@@ -135,7 +135,7 @@ void bubbleSort(struct node *start)
     struct node *ptr1;
     struct node *lptr = NULL;
 
-    /* Checking for empty list */
+
     if (start == NULL)
         return;
 
@@ -159,9 +159,9 @@ void bubbleSort(struct node *start)
 }
 int searchElement(struct node* head, int item)
 {
-    struct node* current = head;  // Initialize current
+    struct node* current = head;
     int index = 0;
-    // traverse till then end of the linked list
+
     while (current != NULL)
     {
         if (current->data == item){
@@ -214,7 +214,7 @@ void ReadLinkedList(struct node** root) {
 int main(){
  struct node* head = NULL;
     int first_choice,second_choice, number_of_elements;
-    //logic variable
+
     int exit = 0;
 
 
@@ -269,31 +269,31 @@ int main(){
            }
 
            case 3: {
-           //reverse the list
+
                 reverse(&head);
                 print(head);
            break;
            }
            case 4: {
-           //add value to a specific index
+
                 insert(&head);
                 print(head);
            }break;
 
            case 5:{
-           //add value to a specific index
+
                 remove_value(&head);
                 print(head);
             }break;
 
            case 6:{
-           //sorting with re-arranging the cells
+
                 bubbleSort(head);
                 print(head);
             }break;
 
             case 7:{
-                //search for a value inside the list
+
                 int data;
                 scanf("%d", &data);
                 if (searchElement(head, data)) {
@@ -317,7 +317,7 @@ int main(){
 
 
            case 0:{
-           printf(" \n Program had been stoped. ");
+           printf(" \n Program stopped. ");
            exit=1;
            }break;
 
