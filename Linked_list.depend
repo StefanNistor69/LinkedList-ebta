@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1665941738 source:c:\users\snist\onedrive\desktop\uni\linked_list\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
