@@ -9,21 +9,15 @@ typedef struct node
 	struct node* next;
 
 
-}*head;
+}*node;
 
-void push(struct node** head_ref, int new_data)
+void push(struct node** start_node, int val)
 {
 
     struct node* new_node = (struct node*) malloc(sizeof(struct node));
-
-
-    new_node->data  = new_data;
-
-
-    new_node->next = (*head_ref);
-
-
-    (*head_ref)    = new_node;
+    new_node->data  = val;
+    new_node->next = (*start_node);
+    (*start_node)    = new_node;
 }
 void append(struct node** head_ref, int new_data)
 {
